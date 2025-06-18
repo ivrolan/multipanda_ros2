@@ -118,10 +118,15 @@ RUN cd ~/source_code && git clone https://github.com/google-deepmind/mujoco.git 
     && cmake --build . \
     && cmake --install .
 
-
 # Now copy the contents of the repository into a new workspace
 RUN mkdir -p ~/humble_ws/src/bimanual_architecture && cd ~/humble_ws
 COPY . /home/user/humble_ws/src/bimanual_architecture/
+
+# Clone mujoco_ros2_control to src directory
+# https://github.com/tenfoldpaper/mujoco_ros_pkgs.git
+RUN cd /home/user/humble_ws/src && git clone https://github.com/tenfoldpaper/mujoco_ros_pkgs.git
+# Checkout the specific branch for ROS 2 Humble
+RUN cd /home/user/humble_ws/src/mujoco_ros_pkgs && git checkout wip_ros_control_humble
 
 # Set up the environment variables
 RUN echo 'source /opt/ros/humble/setup.bash' >> /home/user/.bashrc

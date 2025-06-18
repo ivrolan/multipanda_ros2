@@ -1,6 +1,6 @@
 services:
   realtime_humble:
-    image: bimanual:garmi
+    image: bimanual:franka
     build:
       context: ./
       dockerfile: Dockerfile
